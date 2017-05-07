@@ -2,9 +2,10 @@
 
 ####For take a look on the functionality:
 
-/index.html
+https://test-shopping-cart-e8330.firebaseapp.com/index.html
 
 ####Unit test with qUnit:
 
-/test/test.html
+https://test-shopping-cart-e8330.firebaseapp.com/test/test.html
+
 
