@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Test Cart module</title>
+
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.3.2.css">
+    <script src="https://code.jquery.com/qunit/qunit-2.3.2.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="../js/main.js"></script>
+    <script>
+
+        QUnit.test("Test Products Amount", function( assert ) {
+            var productA = {id:1,name:'Product A',price: 50,promo:'A'};
+            var productB = {id:2,name:'Product B',price: 30,promo:'B'};
+            var productC = {id:3,name:'Product C',price: 20};
+            var productD = {id:4,name:'Product D',price: 15};
+            CartModule.addProductToBag(productA);
+            CartModule.addProductToBag(productA);
+            CartModule.addProductToBag(productB);
+            CartModule.addProductToBag(productB);
+            CartModule.addProductToBag(productC);
+            CartModule.addProductToBag(productC);
+            CartModule.addProductToBag(productD);
+            CartModule.addProductToBag(productA);
+            CartModule.addProductToBag(productD);
+            var value = CartModule.getCartAmount();
+            assert.equal(value,"245");
+        });
+
+        QUnit.test("Test Promo A", function( assert ) {
+            var productA = {id:1,name:'Product A',price: 50,promo:'A'};
+            CartModule.removeCart();
+            CartModule.addProductToBag(productA);
+            CartModule.addProductToBag(productA);
+            CartModule.addProductToBag(productA);
+            CartModule.addProductToBag(productA);
+            CartModule.addProductToBag(productA);
+            CartModule.addProductToBag(productA);
+            CartModule.addProductToBag(productA);
+            var value = CartModule.getCartAmount();
+            assert.equal(value,"310");
+        });
+        QUnit.test("Test Promo B", function( assert ) {
+            var productB = {id:2,name:'Product B',price: 30,promo:'B'};
+            CartModule.removeCart();
+            CartModule.addProductToBag(productB);
+            CartModule.addProductToBag(productB);
+            CartModule.addProductToBag(productB);
+            CartModule.addProductToBag(productB);
+            CartModule.addProductToBag(productB);
+            var value = CartModule.getCartAmount();
+            assert.equal(value,"120");
+        });
+
+        QUnit.test("Test Promo C", function( assert ) {
+            var productC = {id:3,name:'Product C',price: 20};
+            CartModule.removeCart();
+            CartModule.addProductToBag(productC);
+            CartModule.addProductToBag(productC);
+            CartModule.addProductToBag(productC);
+            CartModule.addProductToBag(productC);
+            CartModule.addProductToBag(productC);
+            CartModule.addProductToBag(productC);
+            CartModule.addProductToBag(productC);
+
+            var value = CartModule.getCartAmount();
+            assert.equal(value,"140");
+        });
+
+        QUnit.test("Test Promo D", function( assert ) {
+            var productD = {id:4,name:'Product D',price: 15};
+            CartModule.removeCart();
+            CartModule.addProductToBag(productD);
+            CartModule.addProductToBag(productD);
+            CartModule.addProductToBag(productD);
+            CartModule.addProductToBag(productD);
+            CartModule.addProductToBag(productD);
+            CartModule.addProductToBag(productD);
+
+            var value = CartModule.getCartAmount();
+            assert.equal(value,"90");
+        });
+    </script>
+</head>
+<body>
+
+<div id="qunit"></div>
+
+</body>
+</html>
